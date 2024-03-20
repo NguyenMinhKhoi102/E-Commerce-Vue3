@@ -18,7 +18,7 @@ const errorMessage = ref<String>("");
 const submitForm = (data: any) => {
     if (data.username == "123" && data.password == "123") {
         authen.changeAuthen(true);
-        window.localStorage.setItem("Authen", "true");
+        window.localStorage.setItem("Authen", JSON.stringify(authen.isAuthen));
         router.push({ name: "home" });
     } else {
         console.log(data);
