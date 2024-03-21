@@ -11,18 +11,24 @@ import SignInForm from '@/components/customer/SignInForm.vue';
 import { useAuthen } from '@/stores/authen';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
+import customerService from "@/services/customer.service";
 
 const router = useRouter();
 const authen = useAuthen();
 const errorMessage = ref<String>("");
-const submitForm = (data: any) => {
-    if (data.username == "123" && data.password == "123") {
+
+
+
+const submitForm = async (data: any) => {
+    try {
+        const response = await customerService.signIn(data);
         authen.changeAuthen(true);
         window.localStorage.setItem("Authen", JSON.stringify(authen.isAuthen));
+        window.localStorage.setItem("token", response.token);
         router.push({ name: "home" });
-    } else {
-        console.log(data);
-        errorMessage.value = "Tài khoản hoặc mật khẩu không chính xác";
+    } catch (errors: any) {
+        errorMessage.value = errors.response.data.message;
+        console.log(errors);
     }
 }
 </script>
@@ -39,7 +45,7 @@ h2 {
 }
 
 .form-container {
-    width: 25%;
+    max-width: 300px;
     margin-inline: auto;
 }
 
