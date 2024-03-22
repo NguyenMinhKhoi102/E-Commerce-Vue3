@@ -1,6 +1,6 @@
 <template>
     <div>
-        123
+        Đây là footer
     </div>
 </template>
 

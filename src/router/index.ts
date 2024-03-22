@@ -5,23 +5,47 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/:pathMatch(.*)*",
     name: "notfound",
-    component: () => import("@/views/customer/NotFoundPage.vue"),
+    component: () => import("@/views/NotFoundPage.vue"),
   },
   {
     path: '/signin',
     name: 'signin',
-    component: () => import('../views/customer/SignIn.vue')
+    component: () => import('@/views/customer/SignIn.vue')
   },
   {
     path: '/signup',
     name: 'signup',
-    component: () => import('../views/customer/SignUp.vue')
+    component: () => import('@/views/customer/SignUp.vue')
+  },
+  {
+    path: '/admin/signin',
+    name: 'admin.signin',
+    component: () => import('@/views/admin/SignIn.vue'),
   },
   {
     path: '/',
-    name: 'home',
-    component: () => import('../views/customer/Home.vue')
+    name: 'layout',
+    component: () => import('@/views/customer/Layout.vue'),
+    children: [
+      {
+        path: '/',
+        name: 'home',
+        component: () => import('@/views/customer/Home.vue'),
+      }
+    ]
   },
+  {
+    path: '/admin',
+    name: 'admin.layout',
+    component: () => import('@/views/admin/Layout.vue'),
+    children: [
+      {
+        path: '/admin',
+        name: 'admin.dashboard',
+        component: () => import('@/views/admin/Dashboard.vue'),
+      }
+    ]
+  }
 ]
 
 const router = createRouter({

@@ -1,6 +1,6 @@
 <template>
     <div>
-        123
+        Đây là trang dashboard
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <h2>Đăng nhập</h2>
+    <h2>Admin</h2>
     <div class="form-container">
         <SignInForm @submit:signin="submitForm"></SignInForm>
         <div class="error-message">{{ errorMessage }}</div>
@@ -7,11 +7,11 @@
 </template>
 
 <script setup lang="ts">
-import SignInForm from '@/components/customer/SignInForm.vue';
+import SignInForm from '@/components/admin/SignInForm.vue';
 import { useAuthen } from '@/stores/authen';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
-import customerService from "@/services/customer.service";
+import adminService from "@/services/admin.service";
 
 const router = useRouter();
 const authen = useAuthen();
@@ -19,7 +19,7 @@ const errorMessage = ref<String>("");
 
 const submitForm = async (data: any) => {
     try {
-        const response = await customerService.signIn(data);
+        const response = await adminService.signIn(data);
         authen.changeAuthen(true);
         window.localStorage.setItem("Authen", JSON.stringify(authen.isAuthen));
         window.localStorage.setItem("token", response.token);
@@ -29,6 +29,7 @@ const submitForm = async (data: any) => {
         console.log(errors);
     }
 }
+
 </script>
 
 <style lang="scss" scoped>

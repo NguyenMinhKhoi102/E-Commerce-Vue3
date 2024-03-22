@@ -1,8 +1,10 @@
 <template>
-    <div>Không tìm thấy trang</div>
+    <div>
+        Đây là header
+    </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 
 </script>
 

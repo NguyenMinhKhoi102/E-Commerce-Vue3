@@ -11,7 +11,7 @@ import { LogoutOutlined } from '@ant-design/icons-vue';
 
 const emits = defineEmits<{
     "signout:customer": []
-}>()
+}>();
 
 const signOut = () => {
     emits("signout:customer");
