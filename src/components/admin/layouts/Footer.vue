@@ -1,10 +1,10 @@
 <template>
-    <div>
-        Đây là footer
-    </div>
+    <a-layout-footer style="text-align: center">
+        Ecommerce Website 2024
+    </a-layout-footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 </script>
 
