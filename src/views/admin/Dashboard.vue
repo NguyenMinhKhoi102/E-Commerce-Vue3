@@ -1,12 +1,11 @@
 <template>
     <div class="dashboard-container">
         <Total></Total>
-        <a-row>
+        <a-row :gutter="{ xs: 8, sm: 16, md: 24, lg: 32 }">
             <a-col :span="15">
                 <OutstandingOrders></OutstandingOrders>
             </a-col>
-            <a-col :span="1"></a-col>
-            <a-col :span="8">
+            <a-col :span="9">
                 <TopSale></TopSale>
             </a-col>
         </a-row>

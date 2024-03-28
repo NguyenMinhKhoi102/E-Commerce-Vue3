@@ -76,7 +76,7 @@ import { TeamOutlined, InboxOutlined, ProfileOutlined, BarChartOutlined } from '
     align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
-    gap: 0 40px;
+    gap: 0 32px;
     &-element {
         background: #fff;
         height: 100%;
