@@ -2,8 +2,8 @@
   <div>
     <Breadcrumb></Breadcrumb>
     <Carousel></Carousel>
-    <Table :categories="categories" @submit:addCategory="addCategory" @submit:editCategory="editCategory"
-      @click:deleteCategory="deleteCategory"></Table>
+    <Table :categories="categories" @add:category="addCategory" @edit:category="editCategory"
+      @delete:category="deleteCategory"></Table>
   </div>
 </template>
 
@@ -54,6 +54,7 @@ const addCategory = async (data: any) => {
 
 const editCategory = async (data: any, id: string) => {
   try {
+    console.log(data);
     const response = await categoryService.update(data, id);
     categoryList();
     toast.success('Chỉnh sửa danh mục thành công', {
@@ -61,8 +62,7 @@ const editCategory = async (data: any, id: string) => {
     });
     console.log(response);
   } catch (errors: any) {
-    console.log(errors.response.data.message);
-    toast.error('Chỉnh sửa danh mục thất bại', {
+    toast.error(errors.response.data.message, {
       autoClose: 1000
     });
   }
@@ -70,7 +70,7 @@ const editCategory = async (data: any, id: string) => {
 
 const deleteCategory = async (id: string) => {
   const result = await Swal.fire({
-    title: 'Bạn muốn xóa Exam 200 câu hỏi này?',
+    title: 'Bạn muốn xóa danh mục này?',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -83,12 +83,9 @@ const deleteCategory = async (id: string) => {
       console.log("Id", id);
       const response = await categoryService.delete(id);
       categoryList();
-      toast.success('Xóa danh mục thành công', {
-        autoClose: 1000
-      });
       console.log(response);
       Swal.fire({
-        title: 'Xóa 200 câu hỏi thành công!',
+        title: 'Xóa danh mục thành công!',
         icon: 'success',
         timer: 1000,
         showConfirmButton: false,

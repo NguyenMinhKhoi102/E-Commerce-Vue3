@@ -8,6 +8,7 @@
                     <!-- Thêm danh mục -->
                     <a-col class="gutter-row" :span="6">
                         <div class="gutter-box">
+
                             <!-- Popup-->
                             <a-popover v-model:open="visible" trigger="click" placement="topLeft">
                                 <template #title> <a-alert message="Thêm danh mục" type="info" show-icon /></template>
@@ -33,11 +34,13 @@
 
                         </div>
                     </a-col>
+
                     <!-- Tìm kiếm danh mục -->
                     <a-col class="gutter-row" :span="6">
                         <div class="gutter-box"> <a-input-search v-model:value="value"
                                 placeholder="Nhập tên danh mục cần tìm kiếm" enter-button @search="onSearch" /></div>
                     </a-col>
+
                 </a-row>
 
 
@@ -63,7 +66,8 @@
                         <template v-if="['name', 'age', 'address'].includes(column.dataIndex)">
                             <div>
                                 <a-input v-if="editableData[record._id]"
-                                    v-model:value="editableData[record._id][column.dataIndex]" style="margin: -5px 0" />
+                                    v-model:value="editableData[record._id][column.dataIndex]" 
+                                    style="margin: -5px 0" />
                                 <template v-else>
                                     {{ text }}
                                 </template>
@@ -71,25 +75,32 @@
                         </template>
 
                         <template v-else-if="column.dataIndex === 'operation'">
-                            
-                            <a-form :model="categoryState" :labelCol="{ span: 7 }" name="custom-validation"
-                                class="login-form" autocomplete="off" @finish="onFinishEdit"
-                                @finishFailed="onFinishFailed">
+
+                            <!-- <a-form :model="categoryState" :labelCol="{ span: 7 }" name="custom-validation"
+                                class="login-form" autocomplete="off" 
+                                @finish="onFinishEdit"
+                                @finishFailed="onFinishFailed"> -->
+                                
                                 <div class="editable-row-operations">
+
                                     <span v-if="editableData[record._id]">
-                                        <a-button type="primary" style="margin: 0 8px"
-                                            @click="save(record._id)">Lưu</a-button>
+                                        <a-button type="primary" style="margin: 0 8px" html-type="submit"
+                                            @click="onFinishEdit(record._id)">Lưu</a-button>
                                         <a-button type="primary" style="margin: 0 8px" @click="cancel(record._id)">Hủy
                                             bỏ</a-button>
                                     </span>
+
                                     <span v-else>
-                                        <a-button @click="edit(record._id)" type="primary" danger>Edit</a-button>
+                                        <a-button @click="edit(record._id)" type="primary" danger>Chỉnh sửa</a-button>
                                     </span>
+
                                     <a-button type="primary" style="margin: 0 8px" @click="onDelete(record._id)">Xóa
                                         danh mục
                                     </a-button>
+
                                 </div>
-                            </a-form>
+
+                            <!-- </a-form> -->
 
                         </template>
 
@@ -126,10 +137,8 @@ const hide = () => {
     visible.value = false;
 };
 
-
-
 const props = defineProps<{
-    categories: Array<any>;
+    categories: Array<any>; 
 }>()
 console.log(props.categories)
 
@@ -211,9 +220,9 @@ const categoryState = reactive<CategoryState>({
     name: "",
 });
 const emits = defineEmits<{
-    "submit:addCategory": [data: any],
-    "submit:editCategory": [data: any, id: string],
-    "click:deleteCategory": [id: string],
+    "add:category": [data: any],
+    "edit:category": [data: any, id: string],
+    "delete:category": [id: string],
 }>()
 
 const onFinishFailed = (error: any) => {
@@ -222,7 +231,7 @@ const onFinishFailed = (error: any) => {
 
 // Add Category
 const onFinishAdd = (data: any) => {
-    emits("submit:addCategory", data);
+    emits("add:category", data);
 };
 
 // Edit category
@@ -230,24 +239,25 @@ const editableData: UnwrapRef<Record<string, any>> = reactive({});
 const edit = (_id: string) => {
     editableData[_id] = cloneDeep(props.categories.filter(item => _id === item._id)[0]);
 };
-const save = (_id: string) => {
+
+const onFinishEdit = (_id: string) => {
+    console.log("Old object:", editableData[_id].name);
+    const newData = {
+        name: editableData[_id].name,
+    }
+    emits("edit:category", newData, _id);
+    delete editableData[_id];
     Object.assign(props.categories.filter(item => _id === item._id)[0], editableData[_id]);
     delete editableData[_id];
 };
+
 const cancel = async (_id: string) => {
     delete editableData[_id];
 };
 
-const onFinishEdit = (data: any, id: string) => {
-    emits("submit:editCategory", data, id);
-    delete editableData[id];
-};
-
-
-
 // Delete category
 const onDelete = (id: string) => {
-    emits("click:deleteCategory", id);
+    emits("delete:category", id);
 };
 
 </script>

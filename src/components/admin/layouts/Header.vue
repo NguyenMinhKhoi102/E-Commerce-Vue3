@@ -1,21 +1,21 @@
 <template>
-
-    <a-layout-header style="background: #fff; padding: 0">
+    <a-layout-header class="header">
         <a-flex justify="space-between" id="components-dropdown-demo-placement">
             <menu-unfold-outlined v-if="isToggle" class="trigger" @click="toggleSider" />
             <menu-fold-outlined v-else class="trigger" @click="toggleSider" />
             <a-space>
                 <a-dropdown placements="bottomRight">
                     <a-space>
-                        <a-avatar style="background-color: #87d068" src="https://plus.unsplash.com/premium_photo-1711206464731-3a632e054261?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                           
+                        <a-avatar style="background-color: #87d068"
+                            src="https://plus.unsplash.com/premium_photo-1711206464731-3a632e054261?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                         </a-avatar>
-                        <a-typography-text strong :level="4" :style="{ margin: '0 10px 0 0', verticalAlign: 'middle' }">
-                            Đức
+                        <a-typography-text class="header-name" strong :level="4"
+                            :style="{ margin: '0 10px 0 0', verticalAlign: 'middle' }">
+                            Alex Richard
                         </a-typography-text>
                     </a-space>
                     <template #overlay>
-                        <a-menu >
+                        <a-menu class="header-dropdown" style="">
                             <a-menu-item>
                                 <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
                                     1st menu item
@@ -69,5 +69,24 @@ const toggleSider = () => {
     &:hover {
         color: #1890ff;
     }
+}
+
+.header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: var(--bg-color);
+    padding: 0;
+    color: var(--text-color);
+
+    &-name {
+        color: var(--text-color);
+        transition: var(--trasition-2500);
+    }
+
+    /* &-dropdown {
+        background: #001529;
+        color: #fff;
+    } */
 }
 </style>

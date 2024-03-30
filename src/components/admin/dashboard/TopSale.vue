@@ -23,7 +23,8 @@
 <style lang="scss" scoped>
 .top-sale-container {
     height: 400px;
-    background: white;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     border-radius: 10px;
     padding: 20px;
 }

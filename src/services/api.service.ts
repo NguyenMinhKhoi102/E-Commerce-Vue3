@@ -1,5 +1,5 @@
 import axios, { type AxiosInstance, type InternalAxiosRequestConfig } from "axios";
-
+import loadBalancer from "@/configs/loadBalancer";
 const commonConfig = {
     headers: {
         "Content-Type": "application/json",
@@ -19,6 +19,8 @@ export default (baseURL: any) => {
             if (token) {
                 config.headers.Authorization = `Bearer ${token}`;
             }
+            config.baseURL = loadBalancer.getRandomServer() + config.baseURL;
+            console.log(config);
             return config;
         },
         (error: any) => {

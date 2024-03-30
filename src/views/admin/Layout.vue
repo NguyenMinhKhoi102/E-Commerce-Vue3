@@ -6,7 +6,7 @@
             <!-- Header -->
             <Header :isToggle="isToggle" @update:isToggle="toggleSider"></Header>
             <!-- Content -->
-            <a-layout-content style="margin: 0 16px">
+            <a-layout-content style="padding:16px;" class="layout-main">
                 <div>
                     <router-view v-slot="{ Component }">
                         <component :is="Component" />
@@ -50,4 +50,9 @@ const toggleSider = () => {
 .trigger:hover {
     color: #1890ff;
 }
+
+.layout-main {
+    background: var(--bg-color-light);
+}
+
 </style>

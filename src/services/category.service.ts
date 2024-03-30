@@ -3,7 +3,7 @@ import createApiClient from "./api.service";
 class CategoryService {
     private api: any;
 
-    constructor(baseUrl = "/api/category") {
+    constructor(baseUrl = "/category") {
         this.api = createApiClient(baseUrl);
     }
     async findAll(): Promise<any> {
@@ -16,7 +16,7 @@ class CategoryService {
         return (await this.api.post("/", data)).data;
     }
     async update(data: any, id: string): Promise<any> {
-        return (await this.api.post(`/${id}`, data)).data;
+        return (await this.api.patch(`/${id}`, data)).data;
     }
     async delete(id: string): Promise<any> {
         return (await this.api.delete(`/${id}`)).data;
