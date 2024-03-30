@@ -1,143 +1,55 @@
 <template>
-    <a-layout-sider :collapsed="isToggle" style="position: relative;">
+    <a-layout-sider :collapsed="isToggle" style=" position: -webkit-sticky; position: sticky; top: 0; height: 100vh;">
         <div class="logo"></div>
-        <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline" style="height:80%; overflow-y: auto; ">
-            <!-- 80% -->
-            <a-menu-item key="1">
-                <pie-chart-outlined />
-                <span>Dash Board</span>
-            </a-menu-item>
-            <a-menu-item key="2">
-                <desktop-outlined />
-                <span>Option 2</span>
-            </a-menu-item>
-            <a-sub-menu key="sub1">
-                <template #title>
-                    <span>
-                        <user-outlined />
-                        <span>User</span>
-                    </span>
-                </template>
-                <a-menu-item key="3">Tom</a-menu-item>
-                <a-menu-item key="4">Bill</a-menu-item>
-                <a-menu-item key="5">Alex</a-menu-item>
-            </a-sub-menu>
+        <div style="height: calc(100% - 86px); display: flex; flex-direction: column; justify-content: center">
+            <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline" style="flex: 1; overflow-y: auto;">
+                <!-- 1. Dashboard -->
+                <a-menu-item key="1">
+                    <router-link :to="{ name: 'admin.dashboard' }">
+                        <pie-chart-outlined />
+                        <span>Dash Board</span>
+                    </router-link>
+                </a-menu-item>
 
-            <a-menu-item key="1">
-                <pie-chart-outlined />
-                <span>Dash Board</span>
-            </a-menu-item>
-            <a-menu-item key="2">
-                <desktop-outlined />
-                <span>Option 2</span>
-            </a-menu-item>
-            <a-sub-menu key="sub1">
-                <template #title>
-                    <span>
-                        <user-outlined />
-                        <span>User</span>
-                    </span>
-                </template>
-                <a-menu-item key="3">Tom</a-menu-item>
-                <a-menu-item key="4">Bill</a-menu-item>
-                <a-menu-item key="5">Alex</a-menu-item>
-            </a-sub-menu>
+                <!-- 1. Dashboard -->
+                <a-menu-item key="2">
+                    <router-link :to="{ name: 'admin.category' }">
+                        <pie-chart-outlined />
+                        <span>Category</span>
+                    </router-link>
+                </a-menu-item>
 
-            <a-menu-item key="1">
-                <pie-chart-outlined />
-                <span>Dash Board</span>
-            </a-menu-item>
-            <a-menu-item key="2">
-                <desktop-outlined />
-                <span>Option 2</span>
-            </a-menu-item>
-            <a-sub-menu key="sub1">
-                <template #title>
-                    <span>
-                        <user-outlined />
-                        <span>User</span>
-                    </span>
-                </template>
-                <a-menu-item key="3">Tom</a-menu-item>
-                <a-menu-item key="4">Bill</a-menu-item>
-                <a-menu-item key="5">Alex</a-menu-item>
-            </a-sub-menu>
-
-            <a-menu-item key="1">
-                <pie-chart-outlined />
-                <span>Dash Board</span>
-            </a-menu-item>
-            <a-menu-item key="2">
-                <desktop-outlined />
-                <span>Option 2</span>
-            </a-menu-item>
-            <a-sub-menu key="sub1">
-                <template #title>
-                    <span>
-                        <user-outlined />
-                        <span>User</span>
-                    </span>
-                </template>
-                <a-menu-item key="3">Tom</a-menu-item>
-                <a-menu-item key="4">Bill</a-menu-item>
-                <a-menu-item key="5">Alex</a-menu-item>
-            </a-sub-menu>
-
-            <a-menu-item key="1">
-                <pie-chart-outlined />
-                <span>Dash Board</span>
-            </a-menu-item>
-            <a-menu-item key="2">
-                <desktop-outlined />
-                <span>Option 2</span>
-            </a-menu-item>
-            <a-sub-menu key="sub1">
-                <template #title>
-                    <span>
-                        <user-outlined />
-                        <span>User</span>
-                    </span>
-                </template>
-                <a-menu-item key="3">Tom</a-menu-item>
-                <a-menu-item key="4">Bill</a-menu-item>
-                <a-menu-item key="5">Alex</a-menu-item>
-            </a-sub-menu>
-
-            <a-menu-item key="1">
-                <pie-chart-outlined />
-                <span>Dash Board</span>
-            </a-menu-item>
-            <a-menu-item key="2">
-                <desktop-outlined />
-                <span>Option 2</span>
-            </a-menu-item>
-            <a-sub-menu key="sub1">
-                <template #title>
-                    <span>
-                        <user-outlined />
-                        <span>User</span>
-                    </span>
-                </template>
-                <a-menu-item key="3">Tom</a-menu-item>
-                <a-menu-item key="4">Bill</a-menu-item>
-                <a-menu-item key="5">Alex</a-menu-item>
-            </a-sub-menu>
-            <!-- Đăng xuất 20% -->
-            <a-menu-item style="position: absolute; bottom: 50px; left:0;" key="6" >
-                <desktop-outlined />
-                <span><a-switch v-model:checked="state.checked1" danger/></span>
-            </a-menu-item>
-
-            <a-menu-item style="position: absolute; bottom: 0; left:0;" key="7">
-                <file-outlined />
-                <span>Đăng xuất</span>
-            </a-menu-item>
-
-        </a-menu>
-
+                <!-- 3. Product -->
+                <a-menu-item key="3">
+                    <router-link :to="{ name: 'admin.product' }">
+                        <desktop-outlined />
+                        <span>Product</span>
+                    </router-link>
+                </a-menu-item>
+                <a-sub-menu key="sub1">
+                    <template #title>
+                        <span>
+                            <user-outlined />
+                            <span>User</span>
+                        </span>
+                    </template>
+                    <a-menu-item key="3">Tom</a-menu-item>
+                    <a-menu-item key="4">Bill</a-menu-item>
+                    <a-menu-item key="5">Alex</a-menu-item>
+                </a-sub-menu>
+            </a-menu>
+            <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+                <a-menu-item key="6">
+                    <desktop-outlined />
+                    <span><a-switch v-model:checked="state.checked1" danger /></span>
+                </a-menu-item>
+                <a-menu-item key="7">
+                    <file-outlined />
+                    <span>Đăng xuất</span>
+                </a-menu-item>
+            </a-menu>
+        </div>
     </a-layout-sider>
-
-
 
 </template>
 
@@ -147,21 +59,20 @@ import {
     PieChartOutlined,
     DesktopOutlined,
     UserOutlined,
-    TeamOutlined,
     FileOutlined,
-    AppleOutlined
 
 } from '@ant-design/icons-vue';
 
 const selectedKeys = ref<[any]>(['1']);
+
 defineProps<{
     isToggle: boolean;
 }>();
 
 
 const state = reactive({
-  checked1: true,
-  checked2: false,
+    checked1: true,
+    checked2: false,
 });
 
 </script>

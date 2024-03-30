@@ -43,9 +43,22 @@ const routes: Array<RouteRecordRaw> = [
         path: '/admin',
         name: 'admin.dashboard',
         component: () => import('@/views/admin/Dashboard.vue'),
+      },
+      {
+        path: '/admin/category',
+        name: 'admin.category',
+        component: () => import('@/views/admin/Category.vue'),
+      },
+      {
+        path: '/admin/product',
+        name: 'admin.product',
+        component: () => import('@/views/admin/Product.vue'),
       }
+
+
     ]
   }
+
 ]
 
 const router = createRouter({
