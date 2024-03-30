@@ -6,12 +6,7 @@
             <!-- Header -->
             <Header :isToggle="isToggle" @update:isToggle="toggleSider"></Header>
             <!-- Content -->
-            <a-layout-content style="margin: 0 16px">
-                <!-- BreadCrumb -->
-                <a-breadcrumb style="margin: 16px 0">
-                    <a-breadcrumb-item>Admin</a-breadcrumb-item>
-                    <a-breadcrumb-item>Dashboard</a-breadcrumb-item>
-                </a-breadcrumb>
+            <a-layout-content style="padding:16px;" class="layout-main">
                 <div>
                     <router-view v-slot="{ Component }">
                         <component :is="Component" />
@@ -54,5 +49,9 @@ const toggleSider = () => {
 
 .trigger:hover {
     color: #1890ff;
+}
+
+.layout-main {
+    background: var(--bg-color-light);
 }
 </style>

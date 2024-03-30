@@ -1,68 +1,109 @@
 <template>
-    <a-layout-sider :collapsed="isToggle" style="height: 100vh">
-        <div class="logo"></div>
-        <a-flex :justify="'space-between'" vertical>
-            <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+    <a-layout-sider :collapsed="isToggle" class="sider">
+        <div class="logo">
+            <img src="/logo.png" alt="">
+        </div>
+        <div style="height: calc(100% - 86px); display: flex; flex-direction: column; justify-content: center">
+            <a-menu v-model:selectedKeys="selectedKeys" :theme="themeState.theme" mode="inline"
+                style="flex: 1; overflow-y: auto;">
                 <a-menu-item key="1">
-                    <pie-chart-outlined />
-                    <span>Dash Board</span>
+                    <AppstoreOutlined />
+                    <span>Dashboard</span>
                 </a-menu-item>
                 <a-menu-item key="2">
-                    <desktop-outlined />
-                    <span>Option 2</span>
+                    <DatabaseOutlined />
+                    <span>Categories</span>
                 </a-menu-item>
                 <a-sub-menu key="sub1">
                     <template #title>
                         <span>
-                            <user-outlined />
-                            <span>User</span>
+                            <ShopOutlined />
+                            <span>Products</span>
                         </span>
                     </template>
                     <a-menu-item key="3">Tom</a-menu-item>
                     <a-menu-item key="4">Bill</a-menu-item>
                     <a-menu-item key="5">Alex</a-menu-item>
                 </a-sub-menu>
-                <a-sub-menu key="sub2">
-                    <template #title>
-                        <span>
-                            <team-outlined />
-                            <span>Team</span>
-                        </span>
-                    </template>
-                    <a-menu-item key="6">Team 1</a-menu-item>
-                    <a-menu-item key="8">Team 2</a-menu-item>
-                </a-sub-menu>
-                <a-menu-item key="9">
-                    <file-outlined />
-                    <span>File</span>
+                <a-menu-item key="6">
+                    <UserOutlined />
+                    <span>Customers</span>
                 </a-menu-item>
             </a-menu>
-            <div>123</div>
-        </a-flex>
+            <a-menu v-model:selectedKeys="selectedKeys" :theme="themeState.theme" mode="inline">
+                <a-menu-item key="7">
+                    <SettingOutlined />
+                    <span>Settings</span>
+                </a-menu-item>
+                <a-menu-item key="8">
+                    <LogoutOutlined />
+                    <span>Đăng xuất</span>
+                </a-menu-item>
+            </a-menu>
+        </div>
+
+
     </a-layout-sider>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
+import { useTheme } from "@/stores/theme";
 import {
-    PieChartOutlined,
-    DesktopOutlined,
+    ShopOutlined,
+    SettingOutlined,
     UserOutlined,
-    TeamOutlined,
-    FileOutlined,
+    AppstoreOutlined,
+    DatabaseOutlined,
+    LogoutOutlined
+
 } from '@ant-design/icons-vue';
 
 const selectedKeys = ref<[any]>(['1']);
+
 defineProps<{
     isToggle: boolean;
 }>();
+
+
+const state = reactive({
+    checked1: true,
+    checked2: false,
+});
+
+const themeState = useTheme().$state;
 
 </script>
 
 <style lang="scss" scoped>
 .logo {
-    height: 52px;
-    margin: 16px;
-    background: rgba(255, 255, 255, 0.3);
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+
+    img {
+        height: 100%;
+        border-radius: 10px;
+        background: rgb(255, 255, 255);
+    }
+}
+
+.sider {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background-color: var(--bg-color);
+}
+
+::-webkit-scrollbar-track {
+    background-color: #001529;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #a0a0a065;
+    border-radius: 0;
 }
 </style>

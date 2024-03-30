@@ -78,7 +78,7 @@ import { TeamOutlined, InboxOutlined, ProfileOutlined, BarChartOutlined } from '
     margin-bottom: 30px;
     gap: 0 32px;
     &-element {
-        background: #fff;
+        background: var(--bg-color);
         height: 100%;
         width: calc(100% / $column);
         border-radius: 5px;
@@ -135,14 +135,14 @@ import { TeamOutlined, InboxOutlined, ProfileOutlined, BarChartOutlined } from '
     }
 
     &-amount {
-        color: black;
+        color: var(--text-color);
         font-size: 20px;
         font-weight: 550;
         letter-spacing: 1px;
     }
 
     &-title {
-        color: rgb(52, 52, 52);
+        color: var(--sup-text-color);
         font-size: 14px;
         font-weight: 400;
     }

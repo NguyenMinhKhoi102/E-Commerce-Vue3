@@ -3,7 +3,7 @@ import createApiClient from "./api.service";
 class CustomerService {
     private api: any;
 
-    constructor(baseUrl = "/api/customer") {
+    constructor(baseUrl = "/customer") {
         this.api = createApiClient(baseUrl);
     }
     async signUp(data: any): Promise<any> {

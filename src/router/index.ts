@@ -8,6 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/NotFoundPage.vue"),
   },
   {
+    path: '/test',
+    name: 'test',
+    component: () => import('@/views/Test.vue')
+  },
+  {
     path: '/signin',
     name: 'signin',
     component: () => import('@/views/customer/SignIn.vue')
@@ -43,6 +48,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/admin',
         name: 'admin.dashboard',
         component: () => import('@/views/admin/Dashboard.vue'),
+      },
+      {
+        path: '/admin/setting',
+        name: 'admin.setting',
+        component: () => import('@/views/admin/Setting.vue'),
       }
     ]
   }

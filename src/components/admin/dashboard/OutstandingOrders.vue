@@ -44,7 +44,8 @@ import { CalendarOutlined, StarFilled } from '@ant-design/icons-vue';
 <style lang="scss" scoped>
 .outstanding-orders-container {
     height: 400px;
-    background-color: white;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     border-radius: 10px;
     padding: 20px;
 }
